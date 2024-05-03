@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "relativevariability"
+version = "1.0.0"
+description = "The relativeVariability package, a python based module based on https://github.com/seanchrismurphy/relativeVariability"
+authors = ["Gérard Lichtert <gerard.lichtert@hotmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+statistics = "^1.0.3.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
