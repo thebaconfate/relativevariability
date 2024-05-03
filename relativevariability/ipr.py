@@ -12,10 +12,8 @@ def ipr(
         percentile_1 = percentile_2
         percentile_2 = tmp
     data_len: int = len(data_list)
-    percentile_1_idx: int = math.ceil(percentile_1 * data_len)
-    percentile_2_idx: int = math.ceil(percentile_2 * data_len)
-    percentile_1_idx = max(0, percentile_1_idx - 1) if percentile_1_idx > 0 else 0
-    percentile_2_idx = max(0, percentile_2_idx - 1) if percentile_2_idx > 0 else 0
+    percentile_1_idx: int = max(0, math.ceil(percentile_1 * data_len) - 1)
+    percentile_2_idx: int = max(0, math.ceil(percentile_2 * data_len) - 1)
     print(f"percentile_1_idx: {data_list[percentile_1_idx]}")
     print(f"percentile_2_idx: {data_list[percentile_2_idx]}")
     sorted_data: list[Union[int, float]] = sorted(data_list)
