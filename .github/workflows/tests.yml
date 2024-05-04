@@ -1,9 +1,8 @@
-name: run Pytest test with Poetry
+name: Run tests
 
 on:
   push:
-    branches:
-      - main
+    branches: []
   pull_request:
     branches:
       - main
