@@ -29,9 +29,6 @@ jobs:
       - name: Ensurepath pipx
         run: pipx ensurepath
 
-      - name: Ensurepath pipx global
-        run: sudo pipx ensurepath --global
-
       - name: Install Poetry
         run: pipx install poetry
 
