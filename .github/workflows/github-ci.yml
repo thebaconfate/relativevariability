@@ -1,14 +1,16 @@
 name: tests
 
-on:
-  workflow_run:
-    workflows: [ruff]
-    branches: []
-    types:
-      - completed
+on: [push, pull_request]
 
 jobs:
+  ruff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: chartboost/ruff-action@v1
+
   test:
+    needs: ruff
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -44,4 +46,36 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
-          pytest tests/
+          poetry run pytest --cov=./ --cov-report=xml
+
+      - name: Save coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: ./coverage.xml
+
+  coverage:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage
+
+      - name: Check test coverage
+        id: test-coverage
+        uses: johanvanhelden/gha-clover-test-coverage-check@v1
+        with:
+          percentage: "95"
+          filename: "./coverage.xml"
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          fail_ci_if_error: true
