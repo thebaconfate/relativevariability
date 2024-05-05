@@ -12,4 +12,5 @@ def test_mssd():
 def test_mssd_error():
     with pytest.raises(ValueError):
         mssd([1])
+    with pytest.raises(ValueError):
         mssd([])
