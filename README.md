@@ -1,4 +1,4 @@
-# Relative variability package [![tests](https://github.com/thebaconfate/relativevariability/actions/workflows/tests.yml/badge.svg)](https://github.com/thebaconfate/relativevariability/actions/workflows/tests.yml)  [![codecov](https://codecov.io/gh/thebaconfate/relativevariability/graph/badge.svg?token=FCXBJ2ABKQ)](https://codecov.io/gh/thebaconfate/relativevariability)
+# Relative variability package [![tests](https://github.com/thebaconfate/relativevariability/actions/workflows/tests.yml/badge.svg)](https://github.com/thebaconfate/relativevariability/actions/workflows/tests.yml) [![codecov](https://codecov.io/gh/thebaconfate/relativevariability/graph/badge.svg?token=FCXBJ2ABKQ)](https://codecov.io/gh/thebaconfate/relativevariability)
 
 This package is a Python implementation of the [relative variability package](https://github.com/seanchrismurphy/relativeVariability) written in R. The original package was published [here](https://ppw.kuleuven.be/okp/software/relative_variability/) by Mestdagh et al, accompanying [this](https://ppw.kuleuven.be/okp/software/relative_variability/) paper.
 
