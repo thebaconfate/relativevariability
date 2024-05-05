@@ -1,11 +1,6 @@
 name: Run tests with Pytest
 
 on:
-  push:
-    branches: []
-  pull_request:
-    branches:
-      - main
   workflow_run:
     workflows: ["Format with Ruff"]
     branches: []
