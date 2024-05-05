@@ -37,11 +37,7 @@ jobs:
       - name: Install library
         run: poetry install --no-interaction
 
-      - name: Test with pytest
-        run: pytest --cov-report xml:coverage.xml
-
-      - name: Upload coverage
-        uses: codecov/codecov-action@v3
-        with:
-          file: ./coverage.xml
-          fail_ci_if_error: true
+      - name: Generate Report
+        run: coverage run -m pytest
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v2
