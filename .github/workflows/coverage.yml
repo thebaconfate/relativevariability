@@ -2,9 +2,8 @@ name: coverage
 
 on:
   workflow_run:
-    workflows: [tests]
-    branches:
-      - main
+    workflows: [test, tests]
+    branches: []
     types:
       - completed
 
