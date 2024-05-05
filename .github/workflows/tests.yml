@@ -2,7 +2,7 @@ name: tests
 
 on:
   workflow_run:
-    workflows: ["ruff"]
+    workflows: [ruff]
     branches: []
     types:
       - completed

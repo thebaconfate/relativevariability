@@ -2,14 +2,14 @@ name: coverage
 
 on:
   workflow_run:
-    workflows: ["tests"]
+    workflows: [tests]
     branches:
       - main
     types:
       - completed
 
 jobs:
-  codecov:
+  on-success:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
