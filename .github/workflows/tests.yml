@@ -2,7 +2,7 @@ name: tests
 
 on:
   workflow_run:
-    workflows: ["Format with Ruff"]
+    workflows: ["ruff"]
     branches: []
     types:
       - completed
