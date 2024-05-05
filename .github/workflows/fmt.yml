@@ -1,4 +1,4 @@
-name: Format with Ruff
+name: ruff
 
 on: [push, pull_request]
 

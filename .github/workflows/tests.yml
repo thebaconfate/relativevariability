@@ -1,4 +1,4 @@
-name: Run tests with Pytest
+name: tests
 
 on:
   workflow_run:
