@@ -38,6 +38,12 @@ jobs:
         run: poetry install --no-interaction
 
       - name: Generate Report
-        run: coverage run -m pytest
+        run: pytest --cov=./ --cov-report=xml
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
