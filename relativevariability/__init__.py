@@ -3,5 +3,6 @@ from relativevariability.iqr import iqr
 from relativevariability.mssd import mssd
 from relativevariability.range import range
 from relativevariability.rmssd import rmssd
+from relativevariability.maxmssdgetn import maxmssdgetn
 
-__all__: list[str] = ["ipr", "iqr", "mssd", "range", "rmssd"]
+__all__: list[str] = ["ipr", "iqr", "mssd", "range", "rmssd", "maxmssdgetn"]
