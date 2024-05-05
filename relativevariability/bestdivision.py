@@ -1,5 +1,11 @@
 # TODO: implement this
 
+
+def bestdivision():
+    
+    pass
+
+
 """bestDivision <-
 function(xParts,toUse,toFill,MIN,MAX,noBegin,usedPart)  {
 
