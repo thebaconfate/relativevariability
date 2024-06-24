@@ -1,7 +1,7 @@
 import statistics
 from typing import Union
 from relativevariability.maximumipr import maximum_ipr
-from relativevariability.range import data_range
+from relativevariability.datarange import data_range
 
 
 def relative_range(data: list[Union[int, float]]) -> float:

@@ -3,6 +3,7 @@ import statistics
 from typing import Union
 
 
+
 def maximum_var(data: list[Union[int, float]]) -> float:
     """Calculate the maximum variability of a list of data. Returns the maximum value minus the minimum value."""
     data_max: int | float = max(data)

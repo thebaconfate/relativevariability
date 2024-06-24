@@ -3,6 +3,7 @@ import math
 from relativevariability.maximumipr import maximum_ipr
 
 
+# TODO: confirm this works and write tests
 def maximum_iqr(
     data_mean: int | float, data_min: int | float, data_max: int | float, data_len: int
 ) -> float:
