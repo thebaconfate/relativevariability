@@ -1,11 +1,13 @@
+import math
 from typing import Union
-from statistics import stdev, mean
-from maximumvar import 
+from statistics import stdev
+
+from relativevariability.maximumvar import maximum_var
 
 
-def relative_sd(data: list[Union[int, float]]) -> float:
+def relative_std(data: list[Union[int, float]]) -> float:
     """Calculate the relative standard deviation of a list of data. Returns the standard deviation divided by the mean."""
-    data_mean: float = mean(data)
     data_stdev: float = stdev(data)
-    max_var = 
-    return data_stdev / data_mean
+    max_var: float = maximum_var(data)
+    max_std = math.sqrt(max_var)
+    return data_stdev / max_std
