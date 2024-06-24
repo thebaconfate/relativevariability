@@ -2,7 +2,7 @@ import math
 from typing import Union
 
 
-def maxmssdgetn(
+def max_mssd_get_n(
     data_mean: Union[int, float],
     data_len: Union[int, float],
     data_min: Union[int, float],
