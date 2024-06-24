@@ -29,4 +29,4 @@ def maxmssdgetn(
         m: Union[int, float] = (
             data_len * data_mean - n_min * data_min - n_max * data_max
         )
-    return {"n_min": n_min, "n_max": n_max, "n_middle": n_middle, "m": m}
+    return {"n_min": n_min, "n_max": n_max, "n_middle": n_middle, "middle": m}
