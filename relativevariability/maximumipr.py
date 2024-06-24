@@ -6,6 +6,7 @@ def maximum_ipr(
     percentile_1: int | float,
     percentile_2: int | float,
 ) -> float:
+    """Calculate the maximum Interpercentile Range (IPR) of a list of data. Returns the maximum possible value of the Interpercentile Range."""
     if data_mean == data_min or data_mean == data_max:
         return 0
     if abs(data_min) > abs(data_max):
