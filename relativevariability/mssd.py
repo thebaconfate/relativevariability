@@ -8,5 +8,5 @@ def mssd(data_list: list[Union[int, float]]) -> float:
     if data_len < 2:
         raise ValueError("Data list must have at least 2 elements.")
     return statistics.mean(
-        [(data_list[i] - data_list[i + 1]) ** 2 for i in range( data_len - 1)]
+        [(data_list[i] - data_list[i + 1]) ** 2 for i in range(data_len - 1)]
     )
