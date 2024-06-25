@@ -6,7 +6,7 @@ from relativevariability.rmssd import rmssd
 from relativevariability.maxmssdgetn import max_mssd_get_n
 from relativevariability.mssdparts import mssd_parts
 from relativevariability.maximumvar import maximum_var
-from relativevariability.relativesd import relative_std
+from relativevariability.relativesd import relative_sd
 from relativevariability.updateusefill import update_use_fill
 from relativevariability.maximumsd import maximum_sd
 
@@ -19,7 +19,7 @@ __all__: list[str] = [
     "max_mssd_get_n",
     "mssd_parts",
     "maximum_var",
-    "relative_std",
+    "relative_sd",
     "update_use_fill",
     "maximum_sd",
 ]
