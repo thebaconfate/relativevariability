@@ -9,6 +9,7 @@ from relativevariability.maximumvar import maximum_var
 from relativevariability.relativesd import relative_sd
 from relativevariability.updateusefill import update_use_fill
 from relativevariability.maximumsd import maximum_sd
+from relativevariability.maximumipr import maximum_ipr
 
 __all__: list[str] = [
     "ipr",
@@ -22,4 +23,5 @@ __all__: list[str] = [
     "relative_sd",
     "update_use_fill",
     "maximum_sd",
+    "maximum_ipr",
 ]

@@ -5,5 +5,5 @@ library(devtools)
 library(relativeVariability)
 
 vct <- c(1, 2, 3, 4, 5,  10)
-res <- relativeSD(vct, 1, 10)
+res <- maximumIPR(5, 0, 10, 8, 0.25, 0.75)
 print(res)
