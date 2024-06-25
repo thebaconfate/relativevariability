@@ -13,9 +13,10 @@ def maximum_ipr(
     if data_mean == data_min or data_mean == data_max:
         return 0
     if abs(data_min) > abs(data_max):
-        temp: int | float = data_min
-        data_min = data_max
+        temp: int | float = -data_min
+        data_min = -data_max
         data_max = temp
+        data_mean = -data_mean
     if (
         data_len * data_mean
         < (percentile_2 - 1) * data_min + (data_len - percentile_2 + 1) * data_max
