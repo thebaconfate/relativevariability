@@ -1,58 +1,70 @@
+from concurrent.futures import thread
+import datetime
 import statistics
 from scipy.optimize import minimize
 import math
+import random
+import sys
+import multiprocessing
 
 
-def interpolate(x):
-    _length = len(x)
-    _min = min(x)
-    _max = max(x)
-    _p1 = math.floor(0.25 * _length)
-    _p2 = math.floor(0.75 * _length)
-    _mean = statistics.mean(x)
-    if _mean == _min or _mean == _max:
-        raise ValueError("Mean is equal to min or max")
-    if abs(_min) > abs(_max):
-        temp = -_min
-        _min = -_max
-        _max = temp
-        _mean = -_mean
-    lhs = _length * _mean
-    rhs = (_p2 - 1) * _min + (_length - _p2 + 1) * _max
-    return lhs - rhs
+def interpolate(data, margin=True):
+    data_max: int | float = max(data)
+    data_min: int | float = min(data)
+    data_mean: float = statistics.mean(data)
+    data_len: int = len(data)
+    if data_mean == data_min or data_mean == data_max:
+        raise ValueError("data_mean cannot be equal to data_min or data_max")
+    if abs(data_min) > abs(data_max):
+        tmp: int | float = data_min
+        data_min = data_max
+        data_max = tmp
+    return (data_len * data_mean - data_len * data_min) / (data_max - data_min)
 
 
-def interpolate2(x, margin=True):
-    _length = len(x)
-    _min = min(x)
-    _max = max(x)
-    _p1 = math.floor(0.01 * _length)
-    _p2 = math.floor(0.99 * _length)
-    _mean = statistics.mean(x)
-    if _mean == _min or _mean == _max:
-        raise ValueError("Mean is equal to min or max")
-    if abs(_min) > abs(_max):
-        temp = -_min
-        _min = -_max
-        _max = temp
-        _mean = -_mean
-    lhs = _length * _mean
-    if margin:
-        lhs += 8
-    rhs = _p1 * _min + (_length - _p1) * _max
-    return lhs - rhs
+constraints = [{"type": "eq", "fun": lambda x: interpolate(x)}]
 
 
-constraints = [
-    {"type": "ineq", "fun": lambda x: interpolate(x)},
-    {"type": "eq", "fun": lambda x: interpolate2(x)},
-]
+def threaded_attempt(counter, lock, stop, stop_lock, res):
+    while True:
+        x0 = [random.uniform(-sys.maxsize, sys.maxsize) for _ in range(3)]
+        result = minimize(
+            interpolate,
+            x0,
+            constraints=constraints,
+            method="SLSQP",
+        )
+        with lock:
+            counter.value += 1
+            if counter.value % 100_000 == 0:
+                print("counter", counter.value)
+        with stop_lock:
+            if interpolate(result.x) < 1:
+                stop.value = True
+                for r in result.x:
+                    res.append(r)
+                print("interpolate", interpolate(result.x, False))
+                break
+            elif stop.value:
+                break
 
-x0 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-result = minimize(
-    sum, x0, constraints=constraints, method="SLSQP", options={"disp": True}
-)
 
-print(result.x)
-print("interpolate", interpolate(result.x))
-print("interpolate2", interpolate2(result.x, False))
+if __name__ == "__main__":
+    multiprocessing.freeze_support()
+    counter = multiprocessing.Value("i", 0)
+    lock = multiprocessing.Lock()
+    stop = multiprocessing.Value("b", False)
+    stop_lock = multiprocessing.Lock()
+    res = multiprocessing.Array("f", [])
+    threads = [
+        multiprocessing.Process(
+            target=threaded_attempt, args=(counter, lock, stop, stop_lock, res)
+        )
+        for _ in range(12)
+    ]
+    for i in threads:
+        i.start()
+    for i in threads:
+        i.join()
+    print("res", res)
+    print("ctr", counter.value)
