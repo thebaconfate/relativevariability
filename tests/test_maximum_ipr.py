@@ -17,3 +17,26 @@ def test_mean_equals_max():
 
 def test_abs_min_greater_than_abs_max():
     assert maximum_ipr(5, -20, 10, 10, 0.25, 0.75) == pytest.approx(4.878049)
+
+
+def test_case2():
+    vct = [
+        -1.05691532e08,
+        -1.05657153e08,
+        -1.05691617e08,
+        -1.05691616e08,
+        -1.05691615e08,
+        -1.05691614e08,
+        -1.05691613e08,
+        -1.05691607e08,
+        -1.05691606e08,
+        -1.05639786e08,
+    ]
+    assert maximum_ipr(
+        statistics.mean(vct),
+        min(vct),
+        max(vct),
+        len(vct),
+        0.25 * len(vct),
+        0.75 * len(vct),
+    ) == pytest.approx(34564.4)

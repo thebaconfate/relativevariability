@@ -1,6 +1,3 @@
-# TODO: confirm this works and write tests
-
-
 def maximum_ipr(
     data_mean: int | float,
     data_min: int | float,
