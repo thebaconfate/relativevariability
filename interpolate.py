@@ -21,8 +21,14 @@ def interpolate(lst):
     return lhs - rhs
 
 
+constraints = [{"type": "eq", "fun": interpolate}]
+
 res = minimize(
-    interpolate,
-    [1, 2, 3],
+    sum,
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    options={"disp": True},
+    constraints=constraints,
+    method="SLSQP",
 )
+
 print(res.x)

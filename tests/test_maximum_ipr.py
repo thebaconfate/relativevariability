@@ -15,8 +15,23 @@ def test_mean_equals_max():
     assert maximum_ipr(10, 1, 10, 10, 0.25, 0.75) == pytest.approx(0)
 
 
-def test_abs_min_greater_than_max():
-    v = [3.04144133e15, 2.43315304e15, -5.47459440e15]
+def test_abs_min_greater_than_abs_max():
+    assert maximum_ipr(5, -20, 10, 10, 0.25, 0.75) == pytest.approx(4.878049)
+
+
+def test_case2():
+    v = [
+        -1174559.36404975,
+        -1173890.54863387,
+        -1173042.80477426,
+        -1174782.2274112,
+        -1175053.33452611,
+        -1174971.7337945,
+        -1174968.8788993,
+        -1168536.42858289,
+        -1165737.48082844,
+        -1175053.3337175,
+    ]
     assert maximum_ipr(
         statistics.mean(v), min(v), max(v), len(v), 0.25, 0.75
-    ) == pytest.approx(2.807484e15)
+    ) == pytest.approx(7143.544)
