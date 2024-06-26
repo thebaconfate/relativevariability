@@ -5,15 +5,15 @@ library(devtools)
 library(relativeVariability)
 
 vct <- c(
-        -8.99558082e07,
-        -1.04134412e08,
-        -1.04134411e08,
-        -1.04134410e08,
-        -1.04134409e08,
-        -1.04134408e08,
-        -3.93571899e07,
-        -1.12862539e08,
-        -1.13954509e08,
-        -1.13548355e08)
-res1 <- maximumIPR(mean(vct), min(vct), max(vct), length(vct), 0.25 * length(vct), 0.75 * length(vct))
+        -44321.78599591,
+        -44321.60904952,
+        -44321.81134293,
+        -44321.7241855,
+        -44321.56522732,
+        -44321.80898201,
+        -44321.58418848,
+        -44315.26797085,
+        -44321.82650764,
+        -44321.28162627)
+res1 <- maximumIPR(mean(vct), min(vct), max(vct), length(vct), 0.01 * length(vct), 0.99 * length(vct))
 print(res1)

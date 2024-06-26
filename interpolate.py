@@ -26,8 +26,8 @@ def interpolate2(x, margin=True):
     _length = len(x)
     _min = min(x)
     _max = max(x)
-    _p1 = math.floor(0.25 * _length)
-    _p2 = math.floor(0.75 * _length)
+    _p1 = math.floor(0.01 * _length)
+    _p2 = math.floor(0.99 * _length)
     _mean = statistics.mean(x)
     if _mean == _min or _mean == _max:
         raise ValueError("Mean is equal to min or max")
@@ -38,7 +38,7 @@ def interpolate2(x, margin=True):
         _mean = -_mean
     lhs = _length * _mean
     if margin:
-        lhs += 1e-6
+        lhs += 8
     rhs = _p1 * _min + (_length - _p1) * _max
     return lhs - rhs
 
