@@ -22,7 +22,7 @@ def interpolate(x):
     return lhs - rhs
 
 
-def interpolate2(x):
+def interpolate2(x, margin=True):
     _length = len(x)
     _min = min(x)
     _max = max(x)
@@ -37,8 +37,10 @@ def interpolate2(x):
         _max = temp
         _mean = -_mean
     lhs = _length * _mean
+    if margin:
+        lhs += 1e-6
     rhs = _p1 * _min + (_length - _p1) * _max
-    return lhs - (rhs + 1e-6)
+    return lhs - rhs
 
 
 constraints = [
@@ -53,4 +55,4 @@ result = minimize(
 
 print(result.x)
 print("interpolate", interpolate(result.x))
-print("interpolate2", interpolate2(result.x))
+print("interpolate2", interpolate2(result.x, False))
